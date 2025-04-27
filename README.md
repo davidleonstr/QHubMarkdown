@@ -30,13 +30,13 @@ You can install **QHubMarkdown** directly from the source code by cloning the re
 
 ```bash
 git clone https://github.com/davidleonstr/QHubMarkdown.git
-cd Qurderer
+cd QHubMarkdown
 pip install .
 ```
 **Or for development:**
 ```bash
 git clone https://github.com/davidleonstr/QHubMarkdown.git
-cd Qurderer
+cd QHubMarkdown
 pip install -e .
 ```
 
