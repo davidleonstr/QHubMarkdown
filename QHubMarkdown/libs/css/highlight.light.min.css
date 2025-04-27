@@ -1,0 +1,114 @@
+/*!
+  Tema claro personalizado basado en Default
+  Autor original: Ivan Sagalaev
+  Modificado para mejorar colores
+*/
+
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+
+.hljs {
+  background: #ffffff;
+  color: #2e2e2e;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Comentarios */
+.hljs-comment {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+/* Palabras clave: def, class, return, let, const, etc. */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal {
+  color: #9a57e2;
+  font-weight: bold;
+}
+
+/* Funciones y nombres de clases */
+.hljs-title,
+.hljs-name,
+.hljs-function {
+  color: #2b91af;
+}
+
+/* Cadenas de texto */
+.hljs-string,
+.hljs-attribute {
+  color: #d67e49;
+}
+
+/* Números */
+.hljs-number {
+  color: #2aa198;
+}
+
+/* Operadores y puntuación */
+.hljs-operator,
+.hljs-punctuation {
+  color: #ffb86c;
+}
+
+/* Paréntesis, llaves, corchetes (si se detectan como punctuation) */
+.hljs-punctuation {
+  color: #ff7eb6;
+}
+
+/* Variables, identificadores, template variables */
+.hljs-variable,
+.hljs-template-variable {
+  color: #005cc5;
+}
+
+/* Símbolos y expresiones regulares */
+.hljs-symbol,
+.hljs-regexp {
+  color: #e06c75;
+}
+
+/* Meta (como decoradores en Python o anotaciones) */
+.hljs-meta {
+  color: #20a2ff;
+}
+
+.hljs-meta .hljs-string {
+  color: #ffcb6b;
+}
+
+/* Secciones (como encabezados en Markdown) */
+.hljs-section {
+  color: #e45649;
+  font-weight: bold;
+}
+
+/* Atributos en HTML/JSX */
+.hljs-attr {
+  color: #af00db;
+}
+
+/* Énfasis y negritas */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Adiciones, built-in, bullet, code */
+.hljs-addition,
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code {
+  color: #22863a;
+}
+
+/* Deleciones */
+.hljs-deletion {
+  color: #d73a49;
+}
