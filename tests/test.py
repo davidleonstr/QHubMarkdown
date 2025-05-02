@@ -31,11 +31,10 @@ class MarkdownEditor(QMainWindow):
         # Cargar contenido inicial
         initialText = "# Hello 👋\n"
         self.editor.setPlainText(initialText)
-        self.preview.insertMarkdown(initialText)
 
     def updatePreview(self):
         text = self.editor.toPlainText()
-        self.preview.insertMarkdown(text)
+        self.preview.writeMarkdown(text)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

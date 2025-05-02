@@ -43,7 +43,7 @@ class QHubMarkdown(QWidget):
         self.isReady = False
 
         # If there is markdown to insert
-        self.pendingMarkdown = None
+        self.pendingMarkdown = []
 
         #If the redirection status is pending
         self.pendingRedirectStatus = None
@@ -73,9 +73,11 @@ class QHubMarkdown(QWidget):
             if self.pendingRedirectStatus:
                 self.setNativeRedirection(self.pendingRedirectStatus)
                 self.pendingRedirectStatus = None
-            if self.pendingMarkdown:
-                self.insertMarkdown(self.pendingMarkdown)
-                self.pendingMarkdown = None
+            if len(self.pendingMarkdown) > 0:
+                for item in self.pendingMarkdown:
+                    self.insertMarkdown(item)
+
+                self.pendingMarkdown.clear()
 
     def insertMarkdown(self, text: str) -> None:
         """
@@ -85,7 +87,7 @@ class QHubMarkdown(QWidget):
             text (str): The text to insert.
         """
         if not self.isReady:
-            self.pendingMarkdown = text
+            self.pendingMarkdown.append(text)
             return
             
         js = f"window.insertMarkdown({repr(text)});"
@@ -99,12 +101,12 @@ class QHubMarkdown(QWidget):
             text (str): The text to insert.
         """
         if not self.isReady:
-            self.pendingMarkdown = text
+            self.pendingMarkdown.append(text)
             self.pendingClean = True
             return
         
-        self.clear()
-        self.insertMarkdown(text)
+        js = f"window.writeMarkdown({repr(text)});"
+        self.view.page().runJavaScript(js)
 
     def clear(self) -> None:
         """

@@ -16,8 +16,21 @@ function initializeMarkdownRenderer() {
     });
 
     // Function to python
-    window.insertMarkdown = function(md) {
+    window.writeMarkdown = function(md) {
         document.getElementById('content').innerHTML = marked.parse(md);
+        // Apply syntax highlighting to all code blocks
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+        // Avoid redirects within the embedded browser
+        if (!window.embeddedRedirection) {
+            avoidRedirections();
+        }
+    };
+
+    // Function to python
+    window.insertMarkdown = function(md) {
+        document.getElementById('content').innerHTML += marked.parse(md);
         // Apply syntax highlighting to all code blocks
         document.querySelectorAll('pre code').forEach((block) => {
             hljs.highlightBlock(block);
