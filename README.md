@@ -15,8 +15,8 @@ The widget is designed to **simplify** the rendering of **Markdown** content wit
   - Supports embedded code and custom formatting
 
 - **Code highlightingt**:
-  - Leverages *highlight.js* for **automatic syntax highlighting** in code blocks.
-  - Supports a wide range of programming languages.
+  - Leverages *highlight.js* for **automatic syntax highlighting** in code blocks
+  - Supports a wide range of programming languages
 
 - **Themes**:
   - Built-in support for light and dark themes, mimicking `GitHub's` style
