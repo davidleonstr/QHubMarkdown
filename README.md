@@ -14,7 +14,7 @@ The widget is designed to **simplify** the rendering of **Markdown** content wit
   - Seamlessly display Markdown content in your `PyQt5` applications
   - Supports embedded code and custom formatting
 
-- **Code highlightingt**:
+- **Code highlighting**:
   - Leverages *highlight.js* for **automatic syntax highlighting** in code blocks
   - Supports a wide range of programming languages
 
