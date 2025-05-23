@@ -17,7 +17,7 @@ setup(
     long_description_content_type="text/markdown",
     author="David León",
     author_email="davidalfonsoleoncarmona@gmail.com",
-    url="https://github.com/davidleonstr/QWMarkdown",
+    url="https://github.com/davidleonstr/QHubMarkdown",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
