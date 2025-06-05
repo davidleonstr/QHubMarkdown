@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QHBoxLayout,
     QPlainTextEdit, QSizePolicy
 )
-from QHubMarkdown.QHubMarkdown import QHubMarkdown
+from QHubMarkdown import QHubMarkdown
 import sys
 
 class MarkdownEditor(QMainWindow):

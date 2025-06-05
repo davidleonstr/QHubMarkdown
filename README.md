@@ -11,20 +11,30 @@ The widget is designed to **simplify** the rendering of **Markdown** content wit
 ## Key Features
 
 - **Markdown rendering**:
-  - Seamlessly display Markdown content in your `PyQt5` applications
-  - Supports embedded code and custom formatting
+  - Seamlessly display Markdown content in your `PyQt5` applications.
+  - Supports embedded code and custom formatting.
 
 - **Code highlighting**:
-  - Leverages *highlight.js* for **automatic syntax highlighting** in code blocks
-  - Supports a wide range of programming languages
+  - Leverages *highlight.js* for **automatic syntax highlighting** in code blocks.
+  - Supports a wide range of programming languages.
 
 - **Themes**:
-  - Built-in support for light and dark themes, mimicking `GitHub's` style
-  - Customizable styling to match your application’s look and feel
+  - Built-in support for light and dark themes, mimicking `GitHub's` style.
+  - Customizable styling to match your application's look and feel.
 
 ---
 
 ## Installation
+
+> **Requirements:**
+> - Python 3.11.3 or higher is required.
+> - It is recommended to use a virtual environment (such as `venv`, `virtualenv`, or `conda`) to avoid dependency conflicts.
+
+```bash
+# (Optional) Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+```
 
 You can install **QHubMarkdown** directly from the source code by cloning the repository:
 
@@ -33,7 +43,14 @@ git clone https://github.com/davidleonstr/QHubMarkdown.git
 cd QHubMarkdown
 pip install .
 ```
-**Or for development:**
+
+Or using git + pip to install **QHubMarkdown** using the link to the repository:
+
+```bash
+pip install git+https://github.com/davidleonstr/QHubMarkdown.git
+```
+
+**For development:**
 ```bash
 git clone https://github.com/davidleonstr/QHubMarkdown.git
 cd QHubMarkdown
@@ -46,7 +63,7 @@ To integrate the **QHubMarkdown** widget into your `PyQt5` application and rende
 
 ```python
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from QHubMarkdown.QHubMarkdown import QHubMarkdown
+from QHubMarkdown import QHubMarkdown
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -73,3 +90,34 @@ if __name__ == "__main__":
     window = MainWindow()
     app.exec_()
 ```
+
+## Examples
+
+## Screenshots
+
+![QHubMarkdown in action](https://drive.google.com/uc?id=1p8vNegqiVqY2j8m62AJ7LihmpErFTn3k)
+
+## How to run the examples
+
+<details>
+<summary>Click to expand instructions for running the examples in <code>examples/</code>.</summary>
+
+You can find usage examples in the [`examples`](./examples) folder.
+
+To run an example, use the following command in your terminal from the project root:
+
+```bash
+python examples/widget_display.py
+```
+
+Or try the Markdown editor example:
+
+```bash
+python examples/markdown_editor.py
+```
+
+**Example descriptions:**
+- <code>widget_display.py</code>: Shows how to render Markdown in a PyQt5 window.
+- <code>markdown_editor.py</code>: Example of an interactive Markdown editor.
+
+</details>
