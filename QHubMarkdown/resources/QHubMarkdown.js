@@ -15,8 +15,12 @@ function initializeMarkdownRenderer() {
         langPrefix: 'hljs language-',
     });
 
+    // Store the current markdown text
+    window.currentMarkdownText = "";
+
     // Function to python
     window.writeMarkdown = function(md) {
+        window.currentMarkdownText = md;
         document.getElementById('content').innerHTML = marked.parse(md);
         // Apply syntax highlighting to all code blocks
         document.querySelectorAll('pre code').forEach((block) => {
@@ -26,10 +30,15 @@ function initializeMarkdownRenderer() {
         if (!window.embeddedRedirection) {
             avoidRedirections();
         }
+        // Immediately update the bridge with the new text
+        if (window.markdownBridge) {
+            window.markdownBridge.setMarkdownText(window.currentMarkdownText);
+        }
     };
 
     // Function to python
     window.insertMarkdown = function(md) {
+        window.currentMarkdownText += md;
         document.getElementById('content').innerHTML += marked.parse(md);
         // Apply syntax highlighting to all code blocks
         document.querySelectorAll('pre code').forEach((block) => {
@@ -39,11 +48,27 @@ function initializeMarkdownRenderer() {
         if (!window.embeddedRedirection) {
             avoidRedirections();
         }
+        // Immediately update the bridge with the new text
+        if (window.markdownBridge) {
+            window.markdownBridge.setMarkdownText(window.currentMarkdownText);
+        }
     };
 
     // Function to python
     window.clearMarkdown = function() {
+        window.currentMarkdownText = "";
         document.getElementById('content').innerHTML = '';
+        // Immediately update the bridge with the cleared text
+        if (window.markdownBridge) {
+            window.markdownBridge.setMarkdownText(window.currentMarkdownText);
+        }
+    };
+
+    // Function to get markdown text (for webchannel)
+    window.getMarkdownText = function() {
+        if (window.markdownBridge) {
+            window.markdownBridge.setMarkdownText(window.currentMarkdownText);
+        }
     };
 
     // Signal that the renderer is ready
@@ -61,6 +86,20 @@ function initializeMarkdownRenderer() {
 // Wait for all resources to load
 window.addEventListener('load', function() {
     initializeMarkdownRenderer();
+    
+    // Setup WebChannel connection
+    if (typeof QWebChannel !== 'undefined') {
+        new QWebChannel(qt.webChannelTransport, function(channel) {
+            window.markdownBridge = channel.objects.markdownBridge;
+            
+            // Connect to the signal for requesting markdown text
+            if (window.markdownBridge) {
+                window.markdownBridge.markdownTextRequested.connect(function() {
+                    window.getMarkdownText();
+                });
+            }
+        });
+    }
 });
 
 // Avoid redirects within the embedded browser

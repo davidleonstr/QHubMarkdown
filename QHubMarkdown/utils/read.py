@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QFile, QIODevice
+from qtpy.QtCore import QFile, QIODevice
 
 def readFileContent(filePath: str) -> str:
     file = QFile(filePath)

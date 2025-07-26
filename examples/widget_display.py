@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from qtpy.QtWidgets import QApplication, QMainWindow
 from QHubMarkdown import QHubMarkdown
 
 class MainWindow(QMainWindow):
@@ -6,13 +6,13 @@ class MainWindow(QMainWindow):
         super().__init__()
         
         # Create an instance of QHubMarkdown with a dark theme (default theme)
-        self.markdown = QHubMarkdown(theme="dark")
+        self.markdown = QHubMarkdown(theme='light')
         
         # Initial markdown content to display
         try:
             initialText = open('examples/markdown/markdown_example.md', encoding='utf-8').read()
         except:
-            initialText = "# Hello 👋\nThis is a simple markdown renderer in PyQt5."
+            initialText = "# Hello 👋\nThis is a simple markdown renderer in Qt."
         
         # Insert the markdown content into the widget
         self.markdown.insertMarkdown(initialText)
@@ -20,11 +20,11 @@ class MainWindow(QMainWindow):
         # Set the widget as the central widget of the main window
         self.setCentralWidget(self.markdown)
         
-        self.setWindowTitle("Markdown Display")
+        self.setWindowTitle('Markdown Display')
         self.resize(800, 600)
         self.show()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QApplication([])
     window = MainWindow()
     app.exec_()

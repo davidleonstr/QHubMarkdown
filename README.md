@@ -22,6 +22,11 @@ The widget is designed to **simplify** the rendering of **Markdown** content wit
   - Built-in support for light and dark themes, mimicking `GitHub's` style.
   - Customizable styling to match your application's look and feel.
 
+- **WebChannel communication**:
+  - Bidirectional communication between Python and JavaScript.
+  - Retrieve the current markdown text from the rendered content.
+  - Real-time data exchange for interactive applications.
+
 ---
 
 ## Installation
@@ -91,6 +96,63 @@ if __name__ == "__main__":
     app.exec_()
 ```
 
+### WebChannel Usage
+
+The **QHubMarkdown** widget now supports WebChannel communication, allowing you to retrieve the current markdown text from the rendered content **without delay**:
+
+#### Synchronous Retrieval (No Delay)
+
+```python
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget
+from QHubMarkdown import QHubMarkdown
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        layout = QVBoxLayout(central_widget)
+        
+        # Create markdown widget
+        self.markdown = QHubMarkdown(theme="dark")
+        layout.addWidget(self.markdown)
+        
+        # Add a button to get the markdown text
+        get_text_button = QPushButton("Get Markdown Text (No Delay)")
+        get_text_button.clicked.connect(self.get_markdown_text)
+        layout.addWidget(get_text_button)
+        
+        # Load some content
+        self.markdown.writeMarkdown("# Hello World\nThis is **markdown** content.")
+        
+        self.setWindowTitle("WebChannel Example")
+        self.resize(800, 600)
+        self.show()
+    
+    def get_markdown_text(self):
+        """Retrieve the current markdown text instantly (no delay)."""
+        text = self.markdown.getMarkdownText()
+        print(f"Current markdown text: {text}")
+
+if __name__ == "__main__":
+    app = QApplication([])
+    window = MainWindow()
+    app.exec_()
+```
+
+#### Asynchronous Retrieval (With Callback)
+
+```python
+def get_markdown_text_async(self):
+    """Retrieve the current markdown text asynchronously."""
+    def callback(text):
+        print(f"Retrieved markdown text: {text}")
+    
+    self.markdown.getMarkdownTextAsync(callback)
+```
+```
+
 ## Examples
 
 ## Screenshots
@@ -116,8 +178,14 @@ Or try the Markdown editor example:
 python examples/markdown_editor.py
 ```
 
+Or try the no-delay example:
+
+```bash
+python examples/no_delay_example.py
+```
+
 **Example descriptions:**
 - <code>widget_display.py</code>: Shows how to render Markdown in a PyQt5 window.
-- <code>markdown_editor.py</code>: Example of an interactive Markdown editor.
+- <code>markdown_editor.py</code>: Example of an interactive Markdown editor with WebChannel support.
 
 </details>

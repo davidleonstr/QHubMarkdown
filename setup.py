@@ -5,14 +5,11 @@ setup(
     version="0.1.0",
     packages=find_packages(),
     install_requires=[
-        "PyQt5",
-        "PyQt5-Qt5",
-        "PyQt5_sip",
-        "PyQtWebEngine",
-        "PyQtWebEngine-Qt5",
-        "setuptools",
+        "QtPy",
+        "PyQt6-WebEngine",
+        "setuptools"
     ],
-    description="A PyQt5-based Markdown viewer with syntax highlighting and GitHub-like styling.",
+    description="A PyQt/PySide Markdown viewer with syntax highlighting and GitHub-like styling.",
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
     author="David León",
