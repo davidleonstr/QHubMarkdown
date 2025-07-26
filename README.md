@@ -1,17 +1,17 @@
 # QHubMarkdown
 
-**QHubMarkdown** is a component **renders Markdown** text in a `PyQt5` application, leveraging `PyQtWebEngine` for rendering and utilizing the *highlight.min.js* and *marked.min.js* libraries for **syntax highlighting** and **Markdown** parsing, respectively. 
+**QHubMarkdown** is a component **renders Markdown** text in a `PyQT/PySide` application, leveraging `PyQtWebEngine` for rendering and utilizing the *highlight.min.js* and *marked.min.js* libraries for **syntax highlighting** and **Markdown** parsing, respectively. 
 
 It also **incorporates** the **styling** used by `GitHub's` Markdown renderer, ensuring a familiar and consistent look and feel for the rendered content.
 
-The widget is designed to **simplify** the rendering of **Markdown** content with **embedded code** in `PyQt5` applications. Its familiar style, resembling `GitHub's` Markdown renderer, makes it easy to integrate into applications with similar requirements.
+The widget is designed to **simplify** the rendering of **Markdown** content with **embedded code** in `PyQT/PySide` applications. Its familiar style, resembling `GitHub's` Markdown renderer, makes it easy to integrate into applications with similar requirements.
 
 ---
 
 ## Key Features
 
 - **Markdown rendering**:
-  - Seamlessly display Markdown content in your `PyQt5` applications.
+  - Seamlessly display Markdown content in your `PyQT/PySide` applications.
   - Supports embedded code and custom formatting.
 
 - **Code highlighting**:
@@ -64,11 +64,12 @@ pip install -e .
 
 ## Usage
 
-To integrate the **QHubMarkdown** widget into your `PyQt5` application and render Markdown content, follow the example below:
+To integrate the **QHubMarkdown** widget into your `PyQT/PySide` application and render Markdown content, follow the example below:
 
 ```python
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from qtpy.QtWidgets import QApplication, QMainWindow
 from QHubMarkdown import QHubMarkdown
+import sys
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -78,7 +79,7 @@ class MainWindow(QMainWindow):
         self.markdown = QHubMarkdown(theme="dark")
         
         # Initial markdown content to display
-        initialText = "# Hello 👋\nThis is a simple markdown renderer in PyQt5."
+        initialText = "# Hello 👋\nThis is a simple markdown renderer in PyQT/PySide."
         
         # Insert the markdown content into the widget
         self.markdown.insertMarkdown(initialText)
@@ -90,70 +91,11 @@ class MainWindow(QMainWindow):
         self.resize(800, 600)
         self.show()
 
-if __name__ == "__main__":
-    app = QApplication([])
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
     window = MainWindow()
-    app.exec_()
+    sys.exit(app.exec_())
 ```
-
-### WebChannel Usage
-
-The **QHubMarkdown** widget now supports WebChannel communication, allowing you to retrieve the current markdown text from the rendered content **without delay**:
-
-#### Synchronous Retrieval (No Delay)
-
-```python
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget
-from QHubMarkdown import QHubMarkdown
-
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        
-        central_widget = QWidget()
-        self.setCentralWidget(central_widget)
-        layout = QVBoxLayout(central_widget)
-        
-        # Create markdown widget
-        self.markdown = QHubMarkdown(theme="dark")
-        layout.addWidget(self.markdown)
-        
-        # Add a button to get the markdown text
-        get_text_button = QPushButton("Get Markdown Text (No Delay)")
-        get_text_button.clicked.connect(self.get_markdown_text)
-        layout.addWidget(get_text_button)
-        
-        # Load some content
-        self.markdown.writeMarkdown("# Hello World\nThis is **markdown** content.")
-        
-        self.setWindowTitle("WebChannel Example")
-        self.resize(800, 600)
-        self.show()
-    
-    def get_markdown_text(self):
-        """Retrieve the current markdown text instantly (no delay)."""
-        text = self.markdown.getMarkdownText()
-        print(f"Current markdown text: {text}")
-
-if __name__ == "__main__":
-    app = QApplication([])
-    window = MainWindow()
-    app.exec_()
-```
-
-#### Asynchronous Retrieval (With Callback)
-
-```python
-def get_markdown_text_async(self):
-    """Retrieve the current markdown text asynchronously."""
-    def callback(text):
-        print(f"Retrieved markdown text: {text}")
-    
-    self.markdown.getMarkdownTextAsync(callback)
-```
-```
-
-## Examples
 
 ## Screenshots
 
@@ -178,14 +120,8 @@ Or try the Markdown editor example:
 python examples/markdown_editor.py
 ```
 
-Or try the no-delay example:
-
-```bash
-python examples/no_delay_example.py
-```
-
 **Example descriptions:**
-- <code>widget_display.py</code>: Shows how to render Markdown in a PyQt5 window.
+- <code>widget_display.py</code>: Shows how to render Markdown in a PyQT/PySide window.
 - <code>markdown_editor.py</code>: Example of an interactive Markdown editor with WebChannel support.
 
 </details>
