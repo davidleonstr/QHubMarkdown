@@ -1,17 +1,17 @@
 # QHubMarkdown
 
-**QHubMarkdown** is a component **renders Markdown** text in a `PyQT/PySide` application, leveraging `PyQtWebEngine` for rendering and utilizing the *highlight.min.js* and *marked.min.js* libraries for **syntax highlighting** and **Markdown** parsing, respectively. 
+**QHubMarkdown** is a component **renders Markdown** text in a `PyQt/PySide` application, leveraging `PyQtWebEngine` for rendering and utilizing the *highlight.min.js* and *marked.min.js* libraries for **syntax highlighting** and **Markdown** parsing, respectively. 
 
 It also **incorporates** the **styling** used by `GitHub's` Markdown renderer, ensuring a familiar and consistent look and feel for the rendered content.
 
-The widget is designed to **simplify** the rendering of **Markdown** content with **embedded code** in `PyQT/PySide` applications. Its familiar style, resembling `GitHub's` Markdown renderer, makes it easy to integrate into applications with similar requirements.
+The widget is designed to **simplify** the rendering of **Markdown** content with **embedded code** in `PyQt/PySide` applications. Its familiar style, resembling `GitHub's` Markdown renderer, makes it easy to integrate into applications with similar requirements.
 
 ---
 
 ## Key Features
 
 - **Markdown rendering**:
-  - Seamlessly display Markdown content in your `PyQT/PySide` applications.
+  - Seamlessly display Markdown content in your `PyQt/PySide` applications.
   - Supports embedded code and custom formatting.
 
 - **Code highlighting**:
@@ -64,7 +64,7 @@ pip install -e .
 
 ## Usage
 
-To integrate the **QHubMarkdown** widget into your `PyQT/PySide` application and render Markdown content, follow the example below:
+To integrate the **QHubMarkdown** widget into your `PyQt/PySide` application and render Markdown content, follow the example below:
 
 ```python
 from qtpy.QtWidgets import QApplication, QMainWindow
@@ -79,7 +79,7 @@ class MainWindow(QMainWindow):
         self.markdown = QHubMarkdown(theme="dark")
         
         # Initial markdown content to display
-        initialText = "# Hello 👋\nThis is a simple markdown renderer in PyQT/PySide."
+        initialText = "# Hello 👋\nThis is a simple markdown renderer in PyQt/PySide."
         
         # Insert the markdown content into the widget
         self.markdown.insertMarkdown(initialText)
@@ -121,7 +121,7 @@ python examples/markdown_editor.py
 ```
 
 **Example descriptions:**
-- <code>widget_display.py</code>: Shows how to render Markdown in a PyQT/PySide window.
+- <code>widget_display.py</code>: Shows how to render Markdown in a PyQt/PySide window.
 - <code>markdown_editor.py</code>: Example of an interactive Markdown editor with WebChannel support.
 
 </details>
