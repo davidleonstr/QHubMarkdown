@@ -108,7 +108,7 @@ class QHubMarkdown(QWidget):
 
     def _checkRendererReady(self) -> None:
         self.view.page().runJavaScript(
-            "window.markdownRendererReady",
+            'window.markdownRendererReady',
             self._handleRendererReady
         )
 
@@ -139,7 +139,7 @@ class QHubMarkdown(QWidget):
         if not self.isReady:
             return
             
-        js = "window.getMarkdownText();"
+        js = 'window.getMarkdownText();'
         self.view.page().runJavaScript(js)
 
     def insertMarkdown(self, text: str) -> None:
@@ -153,7 +153,7 @@ class QHubMarkdown(QWidget):
             self.pendingMarkdown.append(text)
             return
             
-        js = f"window.insertMarkdown({repr(text)});"
+        js = f'window.insertMarkdown({repr(text)});'
         self.view.page().runJavaScript(js)
     
     def writeMarkdown(self, text: str) -> None:
@@ -168,7 +168,7 @@ class QHubMarkdown(QWidget):
             self.pendingClean = True
             return
         
-        js = f"window.writeMarkdown({repr(text)});"
+        js = f'window.writeMarkdown({repr(text)});'
         self.view.page().runJavaScript(js)
 
     def clear(self) -> None:
@@ -179,7 +179,7 @@ class QHubMarkdown(QWidget):
             self.pendingClean = True
             return
         
-        self.view.page().runJavaScript("window.clearMarkdown();")
+        self.view.page().runJavaScript('window.clearMarkdown();')
     
     def getMarkdownText(self) -> str:
         """
@@ -189,7 +189,7 @@ class QHubMarkdown(QWidget):
             str: The current markdown text.
         """
         if not self.isReady:
-            return ""
+            return ''
         
         # Return the text stored in the bridge (no delay)
         return self.bridge.getMarkdownText()
@@ -203,7 +203,7 @@ class QHubMarkdown(QWidget):
         """
         if not self.isReady:
             if callback:
-                callback("")
+                callback('')
             return
         
         # Request the text from JavaScript
@@ -229,7 +229,7 @@ class QHubMarkdown(QWidget):
             self.pendingRedirectStatus = state
             return
         
-        js = f"window.setNativeRedirection({repr(state).lower()});" 
+        js = f'window.setNativeRedirection({repr(state).lower()});'
         # '.lower' because booleans in JS are lowercase
 
         self.view.page().runJavaScript(js)
@@ -254,7 +254,7 @@ class QHubMarkdown(QWidget):
         )
 
         if not css:
-            return  # Opcional: puedes lanzar una excepción o usar un tema por defecto
+            return Exception(f"Theme '{theme}' does not exist")
 
         js = r"""
         (() => {{
